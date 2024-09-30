@@ -1,0 +1,185 @@
+RECOMENDADOR DE FILME 
+   FEITO POR CALOS RAFAEL
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendador de Filmes - Estilo Netflix</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Encontre o Filme Perfeito</h1>
+
+        <div class="input-group">
+            <label for="age">Digite sua idade:</label>
+            <input type="number" id="age" placeholder="Digite sua idade aqui" min="1">
+        </div>
+
+        <div class="input-group">
+            <p>Quais gêneros você gosta?</p>
+            <label><input type="checkbox" id="acao"> Ação</label>
+            <label><input type="checkbox" id="comedia"> Comédia</label>
+            <label><input type="checkbox" id="drama"> Drama</label>
+            <label><input type="checkbox" id="aventura"> Aventura</label>
+            <label><input type="checkbox" id="ficcao"> Ficção Científica</label>
+        </div>
+
+        <button onclick="recomendarFilme()">Recomendar Filme</button>
+
+        <div class="recommendation">
+            <h2>Recomendação de Filme:</h2>
+            <p id="recommendation"></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #141414;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #222;
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #e50914;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+            color: #ccc;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #e50914;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #f40612;
+        }
+
+        .recommendation {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 5px;
+        }
+
+        .recommendation h2 {
+            color: #e50914;
+        }
+
+        #recommendation {
+            color: #fff;
+            font-size: 1.2rem;
+        }
+    </style>
+    <script>
+            function recomendarFilme() {
+                const idade = document.getElementById("age").value;
+
+                // Gêneros selecionados
+                const acao = document.getElementById("acao").checked;
+                const comedia = document.getElementById("comedia").checked;
+                const drama = document.getElementById("drama").checked;
+                const aventura = document.getElementById("aventura").checked;
+                const ficcao = document.getElementById("ficcao").checked;
+
+                let recomendacao = "";
+
+                // Verificar se uma idade válida foi inserida
+                if (!idade || idade <= 0) {
+                    document.getElementById("recommendation").innerHTML = "Por favor, insira uma idade válida.";
+                    return;
+                }
+
+                // Recomendação baseada em idade e gêneros
+                if (idade <= 6) {
+                    recomendacao = "O Rei Leão (Animação, Aventura, Família)";
+                } else if (idade >= 7 && idade <= 12) {
+                    recomendacao = "Procurando Nemo (Animação, Aventura, Comédia)";
+                } else if (idade >= 13 && idade <= 17) {
+                    recomendacao = "Harry Potter (Fantasia, Aventura)";
+                } else if (idade >= 18 && idade <= 25) {
+                    recomendacao = "A Origem (Ação, Ficção Científica)";
+                } else if (idade >= 26 && idade <= 40) {
+                    recomendacao = "Gladiador (Ação, Drama)";
+                } else if (idade > 40) {
+                    recomendacao = "Forrest Gump (Drama, Romance)";
+                }
+
+                // Adicionando personalização pelos gêneros
+                if (acao) {
+                    recomendacao = "Velozes e Furiosos (Ação, Aventura)";
+                } 
+                if (comedia) {
+                    recomendacao = "Todo Mundo em Pânico (Comédia)";
+                } 
+                if (drama) {
+                    recomendacao = "O Poderoso Chefão (Drama, Crime)";
+                } 
+                if (aventura) {
+                    recomendacao = "Indiana Jones (Aventura, Ação)";
+                } 
+                if (ficcao) {
+                    recomendacao = "Interestelar (Ficção Científica, Aventura)";
+                }
+
+                // Caso nenhum gênero seja escolhido, usar a recomendação básica por idade
+                if (!acao && !comedia && !drama && !aventura && !ficcao) {
+                    document.getElementById("recommendation").innerHTML = `Recomendação genérica: ${recomendacao}`;
+                } else {
+                    document.getElementById("recommendation").innerHTML = `Recomendação personalizada: ${recomendacao}`;
+                }
+            }
+
+
+    </script>
+</body>
+</html>
+
